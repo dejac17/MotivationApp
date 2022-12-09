@@ -3,7 +3,6 @@ package models
 import (
 	"my-app/database"
 	"time"
-
 	"github.com/gofiber/fiber/v2"
 )
 
@@ -16,7 +15,7 @@ type TodoModel struct {
 	Created time.Time `json:"created_at"`
 }
 
-// Get Todos
+// GetTodos gets all of the todos from the database and returns them as json
 func GetTodos(c *fiber.Ctx) error {
 	db := database.DBConn
 	var todos []TodoModel
