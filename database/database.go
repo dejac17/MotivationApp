@@ -1,7 +1,6 @@
 package database
 
-import(
-	"gorm.io/driver/postgres"
+import (
 	"gorm.io/gorm"
 )
 

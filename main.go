@@ -4,26 +4,21 @@ import (
 	"fmt"
 	"log"
 	"my-app/database"
-	"my-app/models"
+	"my-app/database/models"
 
 	"github.com/gofiber/fiber/v2"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )
+func helloWorld(c *fiber.Ctx) error {
+	return c.SendString("Hello world")
+}
 
-const (
-	hostName string = "localhost"
-	port     string = "5432"
-	dbName   string = "Todo"
-	user     string = "postgres"
-	password string = "my-app"
-
-)
 // Init creates a connection with postgres and tests it
-func init() {
+func initDB() {
 	var err error
 	// Using verbs to refer to consts
-	dsn := fmt.Sprintf("host=%s port=%s dbName=%s user=%s password=%s", hostName, port, dbName, user, password)
+	dsn := "host=localhost port=5432 dbname=goTodo user=postgres password=myapp"
 	database.DBConn, err = gorm.Open(postgres.Open(dsn), &gorm.Config{})
 	if err != nil {
 		log.Fatal("Did not connect to database")
@@ -34,12 +29,17 @@ func init() {
 	fmt.Print("Data migrated to database")
 }
 
+// Routes
+func setRoutes(app *fiber.App) {
+	app.Get("/todos", models.GetTodos)
+}
+
 
 // New creates a new Fiber named instance
 func main() {
 	app := fiber.New()
-
+	initDB()
 	app.Get("/", helloWorld)
-
+	setRoutes(app)
 	app.Listen(":3000")
 }
