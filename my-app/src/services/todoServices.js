@@ -11,7 +11,7 @@ export const getTodo = async (id) => {
     return res.json;
 }
 
-// Create todo using put method
+// Create todo using post method
 export const createTodo = async (todo) => {
     const res = await fetch(baseUrl, {
         method: "POST",
@@ -26,6 +26,20 @@ export const createTodo = async (todo) => {
     return await res.json();
 }
 
-export const updateTodo = (todo) => {
+// Update todo using put method
+export const updateTodo = async (todo) => {
+    const res = await fetch(`${baseUrl}/${todo.id}`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            id: todo.id,
+            title: todo.title,
+            completed: todo.completed
+        }),
+    });
+    return await res.json();
+};
 
-}
+// Delete 
