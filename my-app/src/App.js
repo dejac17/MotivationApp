@@ -6,10 +6,14 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 import './App.css';
 
+const baseUrl = `${process.env.REACT_APP_API_URL}/todos`;
 function App() {
+
+ 
+
   return (
-    <div className="App">
-      Motivational To-do List
+    <div className="container App">
+      <h2>Motivational To-do List App</h2>
     </div>
   );
 }
