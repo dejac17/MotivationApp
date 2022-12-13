@@ -22,3 +22,19 @@ func GetTodos(c *fiber.Ctx) error {
 	db.Find(&todos)
 	return c.JSON(&todos)
 }
+
+// GenerateTodo
+func CreateTodo(c *fiber.Ctx) error {
+	db := database.DBConn
+	todo := new(TodoModel)
+	// Throws error if the json data can't be parsed
+	err := c.BodyParser(todo)
+	if err != nil {
+		return c.Status(500).JSON(fiber.Map{"status": "error", "message": "Check the input", "data": err})
+	}
+	err = db.Create(&todo).Error
+	if err != nil {
+		return c.Status(500).JSON(fiber.Map{"status": "error", "message": "Could not create todo", "data": err})
+	}
+	return c.JSON(&todo)
+}	

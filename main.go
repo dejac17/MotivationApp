@@ -32,6 +32,7 @@ func initDB() {
 // Routes
 func setRoutes(app *fiber.App) {
 	app.Get("/todos", models.GetTodos)
+	app.Post("/todos", models.CreateTodo)
 }
 
 
