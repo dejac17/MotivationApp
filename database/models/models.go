@@ -77,5 +77,18 @@ func UpdateTodo(c *fiber.Ctx) error {
 	todo.Status = updatedTodo.Status
 	db.Save(&todo)
 	return c.JSON(&todo)
+}
 
+func DeleteTodoById(c *fiber.Ctx) error {
+	id := c.Params("id")
+	db := database.DBConn
+	var todo TodoModel
+	//  Return error is todo can not be found by id
+	err := db.Find(&todo, id).Error
+	if err != nil {
+		return c.Status(404).JSON(fiber.Map{"status": "error", "message": "Could not find todo by Id", "data": err})
+	}
+
+	db.Delete(&todo)
+	return c.SendStatus(200)
 }
