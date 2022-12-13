@@ -51,13 +51,31 @@ func CreateTodo(c *fiber.Ctx) error {
 	}
 	return c.JSON(&todo)
 }	
-
+//  UpdateTodo updates the information stored in original model
 func UpdateTodo(c *fiber.Ctx) error {
-	type updatedTodoModel struct {
-		
+	type UpdatedTodoModel struct {
 		Title string `json:"title"`
 		Status bool `json:"completed"`
 		Created time.Time `json:"created_at"`
 	}
+
+	id := c.Params("id")
+	db := database.DBConn
+	var todo TodoModel
+	err := db.Find(&todo, id).Error
+	if err != nil {
+		return c.Status(404).JSON(fiber.Map{"status": "error", "message": "Could not find todo by Id", "data": err})
+	}
+	var updatedTodo UpdatedTodoModel
+	err = c.BodyParser(&updatedTodo)
+
+	if err != nil {
+		return c.Status(500).JSON(fiber.Map{"status": "error", "message": "Reveiw updated input", "data": err})
+	}
+
+	todo.Title = updatedTodo.Title
+	todo.Status = updatedTodo.Status
+	db.Save(&todo)
+	return c.JSON(&todo)
 
 }
