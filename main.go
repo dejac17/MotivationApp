@@ -9,6 +9,7 @@ import (
 	"github.com/gofiber/fiber/v2"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
+	"github.com/gofiber/fiber/v2/middleware/cors"
 )
 func helloWorld(c *fiber.Ctx) error {
 	return c.SendString("Hello world")
@@ -42,6 +43,7 @@ func setRoutes(app *fiber.App) {
 // New creates a new Fiber named instance
 func main() {
 	app := fiber.New()
+	app.Use(cors.New())
 	initDB()
 	app.Get("/", helloWorld)
 	setRoutes(app)
