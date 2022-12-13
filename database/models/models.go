@@ -23,6 +23,19 @@ func GetTodos(c *fiber.Ctx) error {
 	return c.JSON(&todos)
 }
 
+func GetTodoById(c *fiber.Ctx) error {
+	// Gets route paramaters by id
+	id := c.Params("id")
+	db := database.DBConn
+	var todo TodoModel
+	//  Return error is todo can not be found by id
+	err := db.Find(&todo, id).Error
+	if err != nil {
+		return c.Status(500).JSON(fiber.Map{"status": "error", "message": "Could not find todo by Id", "data": err})
+	}
+	return c.JSON(&todo)
+}
+
 // GenerateTodo
 func CreateTodo(c *fiber.Ctx) error {
 	db := database.DBConn
@@ -38,3 +51,13 @@ func CreateTodo(c *fiber.Ctx) error {
 	}
 	return c.JSON(&todo)
 }	
+
+func UpdateTodo(c *fiber.Ctx) error {
+	type updatedTodoModel struct {
+		
+		Title string `json:"title"`
+		Status bool `json:"completed"`
+		Created time.Time `json:"created_at"`
+	}
+
+}
