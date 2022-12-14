@@ -52,5 +52,5 @@ func main() {
 	initDB()
 	app.Get("/", helloWorld)
 	setRoutes(app)
-	app.Listen(":3000")
+	app.Listen(":8000")
 }
