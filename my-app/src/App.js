@@ -4,12 +4,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
   faCircleCheck, faPen, faTrashCan,
 } from '@fortawesome/free-solid-svg-icons'
+import {createTodo, deleteTodo, loadTodos, updateTodo}from './services/todoServices';
 import './App.css';
 
-const baseUrl = `${process.env.REACT_APP_API_URL}/todos`;
+
 function App() {
 
- 
+//  States
+const [toDo, setToDo] = useState([]);
 
   return (
     <div className="container App">

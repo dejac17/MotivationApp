@@ -42,4 +42,10 @@ export const updateTodo = async (todo) => {
     return await res.json();
 };
 
-// Delete 
+// Delete using delete method
+export const deleteTodo = async (id) => {
+    const res = await fetch(`${baseUrl}/${id}`, {
+        method: "DELETE",
+    });
+    return await res.json();
+}
