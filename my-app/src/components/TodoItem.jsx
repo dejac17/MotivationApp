@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Popconfirm, Switch, Tag, Tooltip, Button, List } from "antd";
 import { CloseOutlined, CheckOutlined } from "@ant-design/icons";
 
-const Todo = ({ todo, onTodoRemoval, onTodoToggle }) => {
+const TodoItem = ({ todo, onTodoRemoval, onTodoToggle }) => {
   return (
     <List.Item
       actions={[
