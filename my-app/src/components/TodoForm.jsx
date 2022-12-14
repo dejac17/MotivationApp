@@ -1,8 +1,7 @@
 import React from 'react';
 import { Form, Row, Col, Button, Input } from 'antd';
 
-
-export const TodoForm = ({onFormSubmit}) => {
+ const TodoForm = ({onFormSubmit}) => {
     const [form] = Form.useForm();
 
     const onFinish = () => {
@@ -36,4 +35,4 @@ export const TodoForm = ({onFormSubmit}) => {
         </Form>
     );
 }
-
+export default TodoForm
