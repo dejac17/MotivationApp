@@ -14,3 +14,12 @@ import { createTodo, deleteTodo, loadTodos, updateTodo }from './services/todoSer
 const handleFormSubmit = async (todo) => {
     await createTodo(todo)
 }
+
+const handleRemoveTodo = async (todo) => {
+    await deleteTodo(todo.id)
+}
+
+const handleToggleTodoStatus = async (todo) => {
+    todo.completed = !todo.completed;
+    await updateTodo(todo)
+}
