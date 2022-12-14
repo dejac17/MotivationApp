@@ -38,4 +38,4 @@ const Todo = ({ todo, onTodoRemoval, onTodoToggle }) => {
     </List.Item>
   );
 };
-export default Todo;
+export default TodoItem;
