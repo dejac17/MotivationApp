@@ -25,7 +25,6 @@ const [completedTodos, setCompletedTodos] = useState([]);
 
 {/* Displaying Todos */}
 
-{toDos && toDos.length ? '' : 'No Tasks Added'}
 
 
 }
