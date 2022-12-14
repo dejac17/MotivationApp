@@ -5,8 +5,12 @@ import './TodoForm'
 import { createTodo, deleteTodo, loadTodos, updateTodo }from './services/todoServices'
 
 
-const TodoList = () => {
+ export const TodoList = () => {
     // States
     const [todos, setTodos] = useState([]);
     const [notDoneTodos, setNotDoneTodos] = useState([]);
+}
+
+const handleFormSubmit = async (todo) => {
+    await createTodo(todo)
 }
