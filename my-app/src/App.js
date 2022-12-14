@@ -1,22 +1,29 @@
-import React, { useState, useEffect } from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import React, {useState} from 'react'
+import 'bootstrap/dist/css/bootstrap.min.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {
-  faCircleCheck, faPen, faTrashCan,
-} from '@fortawesome/free-solid-svg-icons'
-import { createTodo, deleteTodo, loadTodos, updateTodo }from './services/todoServices'
+
 import './App.css';
-import { Button } from 'antd'
-import { TodoList } from './components/TodoList';
+
 
 
 
 
 function App() {
+
+  // States
+  const[toDo, setToDO] = useState([
+    {"id": 1, "title": "Task 1", "status": false},
+    {"id": 1, "title": "Task 2", "status": false},
+  ]);
+
+  const [newTask, setNewTask] = ("")
+  const [updateTask, setUpdateTask] = ("")
+
+
   return(
-    <div >
-        <TodoList/>
-        <h1>hey</h1>
+    <div className= "container App">
+
+        <h1>Motivational Todo</h1>
     </div>
   )
 
