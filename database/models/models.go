@@ -12,7 +12,6 @@ type TodoModel struct {
 	ID uint `gorm:"primarykey" json:"id"`
 	Title string `json:"title"`
 	Status bool `json:"completed"`
-	Created time.Time `json:"created_at"`
 }
 
 // GetTodos gets all of the todos from the database and returns them as json

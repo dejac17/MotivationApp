@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
@@ -7,34 +7,28 @@ import {
 import { createTodo, deleteTodo, loadTodos, updateTodo }from './services/todoServices'
 import './App.css';
 
+const baseUrl = `${process.env.REACT_APP_API_URL}/todos`;
+
+
 
 function App() {
 
 //  States
-const [toDo, setToDo] = useState([]);
+const [toDos, setToDos] = useState([]);
 const [newTask, setNewTask] = useState([]);
-const [updateData, setUpdateData] = useState([])
+const [updateData, setUpdateData] = useState([]);
+const [refreshing, setRefreshing] = useState(false);
+const [completedTodos, setCompletedTodos] = useState([]);
 
-// Add Task
 
-// Delete Task
+// Get All Todos
 
-// Mark task as done
+{/* Displaying Todos */}
 
-// Cancel update
+{toDos && toDos.length ? '' : 'No Tasks Added'}
 
-// Change Task for update
 
-// Update Task
-
-  return (
-    <div className="container App">
-      <h2>Motivational To-do List App zx</h2>
-      {/*  */}
-      {toDo && toDo.length ? '' : 'No Tasks Added'}
-      
-    </div>
-  );
 }
+
 
 export default App;
